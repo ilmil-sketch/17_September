@@ -1,0 +1,91 @@
+/* style.css */
+
+/* Video Background Global Transparan */
+#bg-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -2;
+    object-fit: cover;
+    opacity: 0.35; /* Tingkat transparansi video (0.3 - 0.5 recommended) */
+    filter: brightness(0.8) contrast(1.1);
+}
+
+/* Overlay Warna Tematik di Atas Video */
+.main {
+    background: rgba(18, 14, 24, 0.65); /* Overlay gelap transparan biar teks tetap jelas dibaca */
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+/* Bingkai Foto Slide PPT Morphing & Glassmorphism */
+.ppt-slide-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 20px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    animation: pptMorphSlide 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes pptMorphSlide {
+    0% {
+        opacity: 0;
+        transform: scale(0.88) translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateX(0);
+    }
+}
+
+/* Emot Datar Turun saat Salah */
+.falling-emot-box {
+    text-align: center;
+    margin: 15px 0;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+}
+
+.falling-emot {
+    display: inline-block;
+    font-size: 3rem;
+    animation: fallFromTop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes fallFromTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Custom Tombol Navigasi */
+.stButton > button {
+    width: 100%;
+    border-radius: 12px;
+    height: 3.2em;
+    font-weight: 700;
+    background: linear-gradient(135deg, #e67e22, #d35400); /* Nuansa Warm Autumn */
+    color: white;
+    border: none;
+    box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4);
+    transition: transform 0.2s ease;
+}
+
+.stButton > button:active {
+    transform: scale(0.97);
+}
