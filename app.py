@@ -22,19 +22,22 @@ st.markdown("""
         font-size: 13px;
         line-height: 1.5;
         white-space: pre-line;
-        max-width: 240px; /* Lebar ramping sekitar 5cm */
+        max-width: 240px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         margin-top: 10px;
     }
-    /* Styling Keypad */
+    
+    /* --- CSS BARU UNTUK MERAPIKAN KEYPAD DI HP --- */
     div.stButton > button {
         border-radius: 6px !important;
         background-color: rgba(219, 39, 119, 0.1) !important;
         color: #db2777 !important;
         font-weight: bold;
-        font-size: 18px !important;
+        font-size: 16px !important;
         border: 1px solid #db2777 !important;
-        height: 55px !important;
+        min-height: 45px !important;
+        height: 45px !important; /* Membuat tombol lebih ringkas di HP */
+        padding: 0px !important;
         transition: 0.2s;
     }
     div.stButton > button:hover {
@@ -43,16 +46,10 @@ st.markdown("""
         transform: scale(1.02);
     }
     
-    /* --- EFEK ANIMASI PUDAR MASUK (FADE-IN) --- */
+    /* Efek Fade-In */
     @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
     }
     .fade-in-title {
         animation: fadeIn 1.5s ease-in-out;
