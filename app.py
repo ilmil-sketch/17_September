@@ -138,7 +138,7 @@ if not st.session_state.authenticated:
     indicators = "".join(["🟣 " if i < pin_len else "⚪ " for i in range(8)])
     st.markdown(f"<p style='text-align: center; font-size: 24px;'>{indicators}</p>", unsafe_allow_html=True)
     
-    _# Membuat Keypad Interaktif 3 Kolom yang Rapi di HP maupun Laptop
+    # Membuat Keypad Interaktif 3 Kolom yang Rapi di HP maupun Laptop
     _, center_col, _ = st.columns([0.5, 3, 0.5])
     
     with center_col:
