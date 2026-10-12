@@ -26,25 +26,26 @@ st.markdown("""
         box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         margin-top: 10px;
     }
-    
-    /* --- CSS BARU UNTUK MERAPIKAN KEYPAD DI HP --- */
+
+   /* Membuat tombol Keypad berbentuk persegi empat kecil yang rapi di semua perangkat */
     div.stButton > button {
         border-radius: 6px !important;
         background-color: rgba(219, 39, 119, 0.1) !important;
         color: #db2777 !important;
         font-weight: bold;
-        font-size: 14px !important; /* Ukuran font diperkecil sedikit */
+        font-size: 16px !important;
         border: 1px solid #db2777 !important;
-        min-height: 38px !important;
-        height: 38px !important; /* Tinggi tombol diperkecil */
+        width: 60px !important;     /* Lebar fix persegi */
+        height: 60px !important;    /* Tinggi fix persegi */
         padding: 0px !important;
-        margin: 2px !important; /* Spasi antar tombol lebih rapat */
+        margin: auto !important;    /* Posisi di tengah kolom */
+        display: block !important;
         transition: 0.2s;
     }
     div.stButton > button:hover {
         background-color: #db2777 !important;
         color: white !important;
-        transform: scale(1.02);
+        transform: scale(1.05);
     }
     
     /* Efek Fade-In */
