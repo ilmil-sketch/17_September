@@ -33,11 +33,12 @@ st.markdown("""
         background-color: rgba(219, 39, 119, 0.1) !important;
         color: #db2777 !important;
         font-weight: bold;
-        font-size: 16px !important;
+        font-size: 14px !important; /* Ukuran font diperkecil sedikit */
         border: 1px solid #db2777 !important;
-        min-height: 45px !important;
-        height: 45px !important; /* Membuat tombol lebih ringkas di HP */
+        min-height: 38px !important;
+        height: 38px !important; /* Tinggi tombol diperkecil */
         padding: 0px !important;
+        margin: 2px !important; /* Spasi antar tombol lebih rapat */
         transition: 0.2s;
     }
     div.stButton > button:hover {
