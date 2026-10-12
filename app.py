@@ -138,73 +138,78 @@ if not st.session_state.authenticated:
     indicators = "".join(["🟣 " if i < pin_len else "⚪ " for i in range(8)])
     st.markdown(f"<p style='text-align: center; font-size: 24px;'>{indicators}</p>", unsafe_allow_html=True)
     
-    _, center_col, _ = st.columns([1, 1.2, 1])
+    _# Membuat Keypad Interaktif 3 Kolom yang Rapi di HP maupun Laptop
+    _, center_col, _ = st.columns([0.5, 3, 0.5])
     
     with center_col:
+        # Baris 1: 1, 2, 3
         b1, b2, b3 = st.columns(3)
         with b1:
-            if st.button("1", use_container_width=True) and pin_len < 8:
+            if st.button("1", key="k1", use_container_width=True) and pin_len < 8:
                 st.session_state.entered_pin += "1"
                 st.session_state.wrong_pin_alert = False
                 st.rerun()
         with b2:
-            if st.button("2", use_container_width=True) and pin_len < 8:
+            if st.button("2", key="k2", use_container_width=True) and pin_len < 8:
                 st.session_state.entered_pin += "2"
                 st.session_state.wrong_pin_alert = False
                 st.rerun()
         with b3:
-            if st.button("3", use_container_width=True) and pin_len < 8:
+            if st.button("3", key="k3", use_container_width=True) and pin_len < 8:
                 st.session_state.entered_pin += "3"
                 st.session_state.wrong_pin_alert = False
                 st.rerun()
                 
+        # Baris 2: 4, 5, 6
         b4, b5, b6 = st.columns(3)
         with b4:
-            if st.button("4", use_container_width=True) and pin_len < 8:
+            if st.button("4", key="k4", use_container_width=True) and pin_len < 8:
                 st.session_state.entered_pin += "4"
                 st.session_state.wrong_pin_alert = False
                 st.rerun()
         with b5:
-            if st.button("5", use_container_width=True) and pin_len < 8:
+            if st.button("5", key="k5", use_container_width=True) and pin_len < 8:
                 st.session_state.entered_pin += "5"
                 st.session_state.wrong_pin_alert = False
                 st.rerun()
         with b6:
-            if st.button("6", use_container_width=True) and pin_len < 8:
+            if st.button("6", key="k6", use_container_width=True) and pin_len < 8:
                 st.session_state.entered_pin += "6"
                 st.session_state.wrong_pin_alert = False
                 st.rerun()
                 
+        # Baris 3: 7, 8, 9
         b7, b8, b9 = st.columns(3)
         with b7:
-            if st.button("7", use_container_width=True) and pin_len < 8:
+            if st.button("7", key="k7", use_container_width=True) and pin_len < 8:
                 st.session_state.entered_pin += "7"
                 st.session_state.wrong_pin_alert = False
                 st.rerun()
         with b8:
-            if st.button("8", use_container_width=True) and pin_len < 8:
+            if st.button("8", key="k8", use_container_width=True) and pin_len < 8:
                 st.session_state.entered_pin += "8"
                 st.session_state.wrong_pin_alert = False
                 st.rerun()
         with b9:
-            if st.button("9", use_container_width=True) and pin_len < 8:
+            if st.button("9", key="k9", use_container_width=True) and pin_len < 8:
                 st.session_state.entered_pin += "9"
                 st.session_state.wrong_pin_alert = False
                 st.rerun()
                 
+        # Baris 4: Hapus (⌫), 0, Konfirmasi (✔)
         b_del, b0, b_ok = st.columns(3)
         with b_del:
-            if st.button("⌫", use_container_width=True):
+            if st.button("⌫", key="k_del", use_container_width=True):
                 st.session_state.entered_pin = st.session_state.entered_pin[:-1]
                 st.session_state.wrong_pin_alert = False
                 st.rerun()
         with b0:
-            if st.button("0", use_container_width=True) and pin_len < 8:
+            if st.button("0", key="k0", use_container_width=True) and pin_len < 8:
                 st.session_state.entered_pin += "0"
                 st.session_state.wrong_pin_alert = False
                 st.rerun()
         with b_ok:
-            if st.button("✔", use_container_width=True):
+            if st.button("✔", key="k_ok", use_container_width=True):
                 if st.session_state.entered_pin == CORRECT_PIN:
                     st.session_state.authenticated = True
                     st.session_state.wrong_pin_alert = False
@@ -213,7 +218,7 @@ if not st.session_state.authenticated:
                     st.session_state.wrong_pin_alert = True
                     st.session_state.entered_pin = ""
                     st.rerun()
-
+                    
 # --- HALAMAN SETELAH PIN BENAR ---
 else:
     # --- TAHAP 1: HALAMAN SAMBUTAN / SURAT UTAMA ---
