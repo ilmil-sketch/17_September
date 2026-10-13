@@ -265,9 +265,28 @@ else:
                     st.rerun()
 
         # Tampilan Konten Puisi (Kiri: Kotak teks ramping ~5cm, Kanan: Gambar besar)
+       # Tampilan Konten Puisi (Kiri: Kotak teks ramping ~5cm, Kanan: Gambar besar)
         current_poem = POETRY_COLLECTION[st.session_state.selected_poem_idx]
         st.markdown(f"<h3 class='fade-in-title'>{current_poem['title']}</h3>", unsafe_allow_html=True)
         
+        # --- TOMBOL NAVIGASI SLIDE NEXT & BACK ---
+        col_prev, col_info, col_next = st.columns([1, 2, 1])
+        with col_prev:
+            if st.button("⬅️ Sebelumnya", use_container_width=True):
+                if st.session_state.selected_poem_idx > 0:
+                    st.session_state.selected_poem_idx -= 1
+                    st.rerun()
+        with col_info:
+            st.markdown(f"<p style='text-align: center; font-weight: bold; color: #db2777;'>Kepingan ke-{st.session_state.selected_poem_idx + 1} dari 30</p>", unsafe_allow_html=True)
+        with col_next:
+            if st.button("Selanjutnya ➡️", use_container_width=True):
+                if st.session_state.selected_poem_idx < len(POETRY_COLLECTION) - 1:
+                    st.session_state.selected_poem_idx += 1
+                    st.rerun()
+
+        st.write("") # Spasi pemisah
+
+        # --- LAYOUT KONTEN UTAMA (TEKS & GAMBAR) ---
         col_txt, col_img = st.columns([1, 3])
         
         with col_txt:
@@ -275,7 +294,7 @@ else:
             
         with col_img:
             st.image(current_poem["image"], use_container_width=True)
-
+            
     # --- TAHAP 3: HALAMAN PENUTUPAN ---
     elif st.session_state.step == "closing":
         st.balloons()
