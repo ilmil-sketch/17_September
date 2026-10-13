@@ -27,7 +27,7 @@ st.markdown("""
         margin-top: 10px;
     }
 
-    /* Membuat tombol keypad PIN saja yang berbentuk persegi empat kecil */
+    /* Membuat tombol keypad PIN berbentuk persegi empat kecil */
     .pin-keypad div.stButton > button {
         border-radius: 6px !important;
         background-color: rgba(219, 39, 119, 0.1) !important;
