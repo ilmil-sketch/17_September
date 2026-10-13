@@ -124,21 +124,6 @@ if "step" not in st.session_state:
 if "selected_poem_idx" not in st.session_state:
     st.session_state.selected_poem_idx = 0
 
-# --- HALAMAN 1: LOCKSCREEN PIN ---
-if not st.session_state.authenticated:
-    st.markdown("<h2 class='fade-in-title' style='text-align: center;'>Happy Birthday</h2>", unsafe_allow_html=True)
-    st.markdown(f"<p style='text-align: center;'>Masukkan 8 digit PIN untuk membuka kado.<br><i>Clue: {PIN_CLUE}</i></p>", unsafe_allow_html=True)
-    
-    
-    # Tampilkan pemberitahuan jika PIN salah
-    if st.session_state.wrong_pin_alert:
-        st.error("PIN Salah bosssssssssssssss")
-    
-    pin_len = len(st.session_state.entered_pin)
-    indicators = "".join(["🟣 " if i < pin_len else "⚪ " for i in range(8)])
-    st.markdown(f"<p style='text-align: center; font-size: 24px;'>{indicators}</p>", unsafe_allow_html=True)
-    
-    # Membuat Keypad Interaktif 3 Kolom yang Rapi di HP maupun Laptop
     # --- HALAMAN 1: LOCKSCREEN PIN ---
 if not st.session_state.authenticated:
     st.markdown("<h2 class='fade-in-title' style='text-align: center;'>Happy Birthday</h2>", unsafe_allow_html=True)
