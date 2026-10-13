@@ -60,7 +60,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- DATA UTAMA KADO ---
-TARGET_NAME = "Shashi Mulya Putri" \n "(Tretaaaaaan)"
+TARGET_NAME = "Shashi Mulya Putri"
 CORRECT_PIN = "17092006"  # PIN: 17 September 2006
 PIN_CLUE = "Tanggal lahir kamu (17 September 2006) - 8 Angka"
 
