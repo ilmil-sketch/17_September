@@ -27,22 +27,22 @@ st.markdown("""
         margin-top: 10px;
     }
 
-   /* Membuat tombol Keypad berbentuk persegi empat kecil yang rapi di semua perangkat */
-    div.stButton > button {
+    /* Membuat tombol keypad PIN saja yang berbentuk persegi empat kecil */
+    .pin-keypad div.stButton > button {
         border-radius: 6px !important;
         background-color: rgba(219, 39, 119, 0.1) !important;
         color: #db2777 !important;
         font-weight: bold;
         font-size: 16px !important;
         border: 1px solid #db2777 !important;
-        width: 60px !important;     /* Lebar fix persegi */
-        height: 60px !important;    /* Tinggi fix persegi */
+        width: 60px !important;
+        height: 60px !important;
         padding: 0px !important;
-        margin: auto !important;    /* Posisi di tengah kolom */
+        margin: auto !important;
         display: block !important;
         transition: 0.2s;
     }
-    div.stButton > button:hover {
+    .pin-keypad div.stButton > button:hover {
         background-color: #db2777 !important;
         color: white !important;
         transform: scale(1.05);
@@ -129,6 +129,7 @@ if not st.session_state.authenticated:
     st.markdown("<h2 class='fade-in-title' style='text-align: center;'>Happy Birthday</h2>", unsafe_allow_html=True)
     st.markdown(f"<p style='text-align: center;'>Masukkan 8 digit PIN untuk membuka kado.<br><i>Clue: {PIN_CLUE}</i></p>", unsafe_allow_html=True)
     
+    
     # Tampilkan pemberitahuan jika PIN salah
     if st.session_state.wrong_pin_alert:
         st.error("PIN Salah bosssssssssssssss")
@@ -138,8 +139,22 @@ if not st.session_state.authenticated:
     st.markdown(f"<p style='text-align: center; font-size: 24px;'>{indicators}</p>", unsafe_allow_html=True)
     
     # Membuat Keypad Interaktif 3 Kolom yang Rapi di HP maupun Laptop
+    # --- HALAMAN 1: LOCKSCREEN PIN ---
+if not st.session_state.authenticated:
+    st.markdown("<h2 class='fade-in-title' style='text-align: center;'>Happy Birthday</h2>", unsafe_allow_html=True)
+    st.markdown(f"<p style='text-align: center;'>Masukkan 8 digit PIN untuk membuka kado.<br><i>Clue: {PIN_CLUE}</i></p>", unsafe_allow_html=True)
+
+    if st.session_state.wrong_pin_alert:
+        st.error("PIN Salah bosssssssssssssss")
+
+    pin_len = len(st.session_state.entered_pin)
+    indicators = "".join(["🟣 " if i < pin_len else "⚪ " for i in range(8)])
+    st.markdown(f"<p style='text-align: center; font-size: 24px;'>{indicators}</p>", unsafe_allow_html=True)
+
+    # Bungkus bagian keypad dengan class khusus agar hanya tombol ini yang berbentuk persegi
+    st.markdown('<div class="pin-keypad">', unsafe_allow_html=True)
     _, center_col, _ = st.columns([0.5, 3, 0.5])
-    
+
     with center_col:
         # Baris 1: 1, 2, 3
         b1, b2, b3 = st.columns(3)
@@ -158,7 +173,7 @@ if not st.session_state.authenticated:
                 st.session_state.entered_pin += "3"
                 st.session_state.wrong_pin_alert = False
                 st.rerun()
-                
+
         # Baris 2: 4, 5, 6
         b4, b5, b6 = st.columns(3)
         with b4:
@@ -176,7 +191,7 @@ if not st.session_state.authenticated:
                 st.session_state.entered_pin += "6"
                 st.session_state.wrong_pin_alert = False
                 st.rerun()
-                
+
         # Baris 3: 7, 8, 9
         b7, b8, b9 = st.columns(3)
         with b7:
@@ -194,7 +209,7 @@ if not st.session_state.authenticated:
                 st.session_state.entered_pin += "9"
                 st.session_state.wrong_pin_alert = False
                 st.rerun()
-                
+
         # Baris 4: Hapus (⌫), 0, Konfirmasi (✔)
         b_del, b0, b_ok = st.columns(3)
         with b_del:
@@ -217,6 +232,7 @@ if not st.session_state.authenticated:
                     st.session_state.wrong_pin_alert = True
                     st.session_state.entered_pin = ""
                     st.rerun()
+    st.markdown('</div>', unsafe_allow_html=True)
                     
 # --- HALAMAN SETELAH PIN BENAR ---
 else:
