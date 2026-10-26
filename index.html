@@ -7,15 +7,13 @@
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
-<body style="position: relative; min-height: 100vh; margin: 0; padding: 24px 16px;">
+<body style="position: relative; min-height: 100vh; margin: 0; padding: 20px 16px;">
 
-  <!-- Video Background Paksa Fullscreen di Belakang -->
-  <video autoplay muted loop playsinline id="bg-video" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: -2; pointer-events: none;">
+  <!-- Video Background -->
+  <video autoplay muted loop playsinline id="bg-video">
     <source src="autumn_bg.mp4" type="video/mp4" />
   </video>
-  
-  <!-- Lapisan Transparan Pink Frosted Glass -->
-  <div class="bg-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(253, 242, 248, 0.82); backdrop-filter: blur(4px); z-index: -1; pointer-events: none;"></div>
+  <div class="bg-overlay"></div>
 
   <!-- ================= TAHAP 0: LOCKSCREEN PIN ================= -->
   <section id="screen-lock" class="container pin-container fade-in">
@@ -59,23 +57,37 @@
 This your day! 🎉 
 and ini revisial kemarin, juga sama-sama khusus untuk menyimpan setiap keping cerita, tawa, dan memori perjalanan kita. 
 
-Silakan nikmati setiap keping kenangan di dalamnya. Enjoy your special day!</div>
-    <button class="nav-btn" onclick="goToStep('poetry')">Lanjut ke Kumpulan Puisi & Memori ➡️</button>
+Sebelum kepingan puisinya dibuka, ada sedikit kuis memori dulu nih. Silakan nikmati perjalanannya!</div>
+    <button class="nav-btn" onclick="goToStep('quiz')">Mulai Kuis Memori ➡️</button>
   </section>
 
-  <!-- ================= TAHAP 2: GALERI PUISI (1-30) ================= -->
+  <!-- ================= TAHAP 2: KUIS 7 PERTANYAAN ================= -->
+  <section id="screen-quiz" class="container hidden fade-in" style="max-width: 620px;">
+    <div class="quiz-card">
+      <span id="quiz-counter" style="font-size: 13px; font-weight: 600; color: #db2777;">Pertanyaan 1 dari 7</span>
+      <h2 id="question-text" style="text-align: left; margin: 12px 0 14px; font-size: 1.2rem;">Pertanyaan</h2>
+
+      <!-- Tempat pesan salah/roasting random muncul -->
+      <div id="quiz-error" class="error-alert hidden" style="margin-bottom: 14px;"></div>
+
+      <div id="options-container" class="options-grid"></div>
+    </div>
+  </section>
+
+  <!-- ================= TAHAP 3: GALERI 30 PUISI ================= -->
   <section id="screen-poetry" class="container hidden fade-in">
     <h2>📖 Galeri Kepingan Cerita</h2>
 
     <div class="top-nav">
-      <button class="nav-btn nav-btn-outline" style="width: auto;" onclick="goToStep('welcome')">⬅️ Kembali ke Surat Sambutan</button>
+      <button class="nav-btn nav-btn-outline" style="width: auto;" onclick="goToStep('quiz')">⬅️ Kembali ke Kuis</button>
       <button class="nav-btn" style="width: auto;" onclick="goToStep('closing')">Lanjut ke Penutupan ➡️</button>
     </div>
 
     <hr />
 
+    <!-- Panel 30 Nomor Ringkas -->
     <div class="selector-panel">
-      <p style="font-weight: 600; color: #db2777; font-size: 14px;">🗂️ Pilih Kepingan Puisi (1 - 30):</p>
+      <p style="font-weight: 600; color: #db2777; font-size: 13px;">🗂️ Pilih Kepingan Puisi (1 - 30):</p>
       <div class="numbers-grid" id="numbers-grid"></div>
     </div>
 
@@ -89,7 +101,7 @@ Silakan nikmati setiap keping kenangan di dalamnya. Enjoy your special day!</div
     </div>
   </section>
 
-  <!-- ================= TAHAP 3: PENUTUP ================= -->
+  <!-- ================= TAHAP 4: PENUTUP ================= -->
   <section id="screen-closing" class="container hidden fade-in" style="max-width: 650px;">
     <h1>Bye Bye</h1>
     <hr />
