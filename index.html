@@ -10,7 +10,7 @@
 <body style="position: relative; min-height: 100vh; margin: 0; padding: 20px 16px;">
 
   <!-- Video Background -->
-  <video autoplay muted loop playsinline id="bg-video">
+  <video autoplay muted loop playsinline id="bg-video" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: -2; pointer-events: none;">
     <source src="autumn_bg.mp4" type="video/mp4" />
   </video>
   <div class="bg-overlay"></div>
@@ -67,7 +67,7 @@ Sebelum kepingan puisinya dibuka, ada sedikit kuis memori dulu nih. Silakan nikm
       <span id="quiz-counter" style="font-size: 13px; font-weight: 600; color: #db2777;">Pertanyaan 1 dari 7</span>
       <h2 id="question-text" style="text-align: left; margin: 12px 0 14px; font-size: 1.2rem;">Pertanyaan</h2>
 
-      <!-- Tempat pesan salah/roasting random muncul -->
+      <!-- Tempat pesan roasting/salah muncul -->
       <div id="quiz-error" class="error-alert hidden" style="margin-bottom: 14px;"></div>
 
       <div id="options-container" class="options-grid"></div>
@@ -93,10 +93,11 @@ Sebelum kepingan puisinya dibuka, ada sedikit kuis memori dulu nih. Silakan nikm
 
     <h3 id="poem-title" class="fade-in">Judul Puisi</h3>
     
+    <!-- Wadah Puisi Vertikal (Foto di atas, teks di bawahnya) -->
     <div class="poetry-layout">
-      <div class="poetry-box fade-in" id="poem-content">Isi teks puisi...</div>
-      <div class="poetry-image-wrap fade-in">
+      <div class="poetry-wrapper fade-in">
         <img id="poem-image" src="puisi1.png" alt="Gambar Puisi" />
+        <div class="poetry-box" id="poem-content">Isi teks puisi...</div>
       </div>
     </div>
   </section>
