@@ -69,7 +69,7 @@ function pressSubmit() {
   }
 }
 
-// --- 2. DATA KUIS DENGAN KUNCI JAWABAN & ROASTING ---
+// --- 2. DATA KUIS LENGKAP DENGAN KUNCI JAWABAN & ROASTING ---
 const quizData = [
   {
     question: "1. Mobil impian yang paling sering dibahas atau jadi idaman?",
@@ -141,7 +141,7 @@ const quizData = [
 const randomRoasts = [
   "Salah woyyyy! Masa lupa sih?! 😭",
   "Teng nong! Jawabanmu terdeteksi ngawur wkwk.",
-  "Mikirnya jangan sambil ngantuk dong bosss! Coba lagi.",
+  "Mikirnya jangan sambil ngantuk dong boss! Coba lagi.",
   "Astagfirullah, ingat-ingat lagi momennya astagaaa...",
   "Bukan ituuuu! Jangan pura-pura lupa ya! 🤨",
   "Salah! Nilai kuis ini minus 100 kalau ngasal terus.",
