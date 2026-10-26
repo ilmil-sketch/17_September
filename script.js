@@ -32,7 +32,7 @@ const POETRY_COLLECTION = [
   {"number": 30, "title": "30. Nitya (Keabadian dalam Goresan)", "content": "Tiga puluh keping saksi pertemanan tulus,\nTersimpan rapat, kekal dalam memori.", "image": "puisi30.png"}
 ];
 
-// Logika Keypad PIN
+// --- 1. LOGIKA KEYPAD PIN ---
 const CORRECT_PIN = "17092006";
 let enteredPin = "";
 
@@ -69,24 +69,154 @@ function pressSubmit() {
   }
 }
 
-// Efek Balon
+// --- 2. DATA KUIS DENGAN KUNCI JAWABAN & ROASTING ---
+const quizData = [
+  {
+    question: "1. Mobil impian yang paling sering dibahas atau jadi idaman?",
+    options: ["Civic Turbo", "Ford Ranger Raptor", "Pajero Sport", "Jeep Rubicon"],
+    correctIndex: 1
+  },
+  {
+    question: "2. Momen paling random pas motong sayur kangkung?",
+    options: [
+      "Kangkungnya dimakan mentah",
+      "Dipotong pakai rumus momen inersia",
+      "Batangnya dipilah satu-satu sampai subuh",
+      "Dipotong sambil curhat dramatis"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "3. Sebagai anak Teknik Sipil sejati, tugas apa yang paling menyiksa batin?",
+    options: [
+      "Analisis Struktur & Mekanika Rekayasa",
+      "Gambar Denah / Gartek AutoCAD",
+      "Uji Kuat Tekan Beton & Tanah",
+      "Semuanya bikin pengen ganti jurusan"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "4. Kapan jam-jam kritis pas ngerjain laporan praktikum?",
+    options: [
+      "Pagi pas mau masuk kelas",
+      "Jam 2 malam depan laptop sambil ngelamun",
+      "Pas file corrupt belum ke-save",
+      "Gak pernah kritis, selalu sat-set"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "5. Apa respon pertama kalau dapet kabar libur dadakan?",
+    options: [
+      "Tidur seharian penuh",
+      "Cari makan enak / nongkrong",
+      "Malah bingung mau ngapain",
+      "Tetep mikirin revisian"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "6. Kalau disuruh milih: Beton mutu tinggi K-500 atau Raptor?",
+    options: [
+      "Tetep cinta beton",
+      "Tentu saja Raptor tanpa mikir!",
+      "Raptor isi adukan semen",
+      "Dua-duanya buat proyek masa depan"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "7. Pertanyaan terakhir, apa harapan terbaik di umur yang baru?",
+    options: [
+      "Proyek & kuliah lancar jaya",
+      "Selalu bahagia dan banyak duit",
+      "Bisa nyetir Raptor beneran",
+      "Semua doa baik terkabul tanpa tapi!"
+    ],
+    correctIndex: 3
+  }
+];
+
+const randomRoasts = [
+  "Salah woyyyy! Masa lupa sih?! 😭",
+  "Teng nong! Jawabanmu terdeteksi ngawur wkwk.",
+  "Mikirnya jangan sambil ngantuk dong bosss! Coba lagi.",
+  "Astagfirullah, ingat-ingat lagi momennya astagaaa...",
+  "Bukan ituuuu! Jangan pura-pura lupa ya! 🤨",
+  "Salah! Nilai kuis ini minus 100 kalau ngasal terus.",
+  "Meleset jauh! Pikirin pake logika anak sipil coba."
+];
+
+let currentQuizIndex = 0;
+
+function loadQuestion() {
+  const q = quizData[currentQuizIndex];
+  document.getElementById("quiz-counter").innerText = `Pertanyaan ${currentQuizIndex + 1} dari ${quizData.length}`;
+  document.getElementById("question-text").innerText = q.question;
+
+  const errorBox = document.getElementById("quiz-error");
+  if (errorBox) errorBox.classList.add("hidden");
+
+  const optionsDiv = document.getElementById("options-container");
+  optionsDiv.innerHTML = "";
+
+  q.options.forEach((opt, idx) => {
+    const btn = document.createElement("button");
+    btn.className = "option-btn";
+    btn.innerText = opt;
+    btn.onclick = () => handleAnswer(idx);
+    optionsDiv.appendChild(btn);
+  });
+}
+
+function handleAnswer(selectedIdx) {
+  const q = quizData[currentQuizIndex];
+  const errorBox = document.getElementById("quiz-error");
+
+  if (selectedIdx === q.correctIndex) {
+    if (errorBox) errorBox.classList.add("hidden");
+    confetti({ particleCount: 40, spread: 60, origin: { y: 0.7 } });
+
+    currentQuizIndex++;
+    if (currentQuizIndex < quizData.length) {
+      loadQuestion();
+    } else {
+      goToStep("poetry");
+    }
+  } else {
+    const randomText = randomRoasts[Math.floor(Math.random() * randomRoasts.length)];
+    errorBox.innerText = randomText;
+    errorBox.classList.remove("hidden");
+
+    const card = document.querySelector(".quiz-card");
+    card.classList.add("shake");
+    setTimeout(() => card.classList.remove("shake"), 400);
+  }
+}
+
+// --- 3. EFEK BALON & STEP ROUTER ---
 function triggerBalloons() {
   confetti({
-    particleCount: 70,
+    particleCount: 80,
     spread: 90,
     origin: { y: 0.6 }
   });
 }
 
-// Navigasi Langkah
 function goToStep(step) {
   document.getElementById("screen-welcome").classList.add("hidden");
+  document.getElementById("screen-quiz").classList.add("hidden");
   document.getElementById("screen-poetry").classList.add("hidden");
   document.getElementById("screen-closing").classList.add("hidden");
 
   if (step === "welcome") {
     document.getElementById("screen-welcome").classList.remove("hidden");
     triggerBalloons();
+  } else if (step === "quiz") {
+    document.getElementById("screen-quiz").classList.remove("hidden");
+    currentQuizIndex = 0;
+    loadQuestion();
   } else if (step === "poetry") {
     document.getElementById("screen-poetry").classList.remove("hidden");
     triggerBalloons();
@@ -97,7 +227,7 @@ function goToStep(step) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// Render Konten Puisi
+// --- 4. RENDER 30 PUISI ---
 let selectedPoemIndex = 0;
 
 function renderPoem(idx) {
@@ -129,6 +259,6 @@ function setupNumbersGrid() {
   });
 }
 
-// Inisialisasi saat web pertama dimuat
+// Inisialisasi awal
 setupNumbersGrid();
 renderPoem(0);
