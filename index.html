@@ -3,309 +3,94 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Special Day - 17 September</title>
-  <!-- Confetti script untuk efek perayaan -->
+  <title>Special Birthday Gift - Shashi Mulya Putri</title>
+  <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    /* Video Background */
-    #bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -2;
-    }
-
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(15, 15, 25, 0.7);
-      backdrop-filter: blur(4px);
-      z-index: -1;
-    }
-
-    .card {
-      width: 90%;
-      max-width: 520px;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 30px;
-      border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
-      text-align: center;
-      margin: 20px auto;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    h1, h2 {
-      margin-bottom: 16px;
-      font-weight: 600;
-    }
-
-    p {
-      margin-bottom: 20px;
-      font-size: 0.95rem;
-      line-height: 1.5;
-      color: #e0e0e0;
-    }
-
-    input[type="password"] {
-      width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      background: rgba(255, 255, 255, 0.15);
-      color: #fff;
-      font-size: 1.1rem;
-      text-align: center;
-      letter-spacing: 4px;
-      outline: none;
-      margin-bottom: 15px;
-    }
-
-    input[type="password"]::placeholder {
-      letter-spacing: 1px;
-      color: #ccc;
-      font-size: 0.9rem;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 10px;
-      background: #e66767;
-      color: white;
-      font-weight: bold;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-    }
-
-    button:hover {
-      background: #ea8685;
-      transform: translateY(-2px);
-    }
-
-    .options-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .option-btn {
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      text-align: left;
-      padding: 14px 18px;
-      font-size: 0.95rem;
-      font-weight: normal;
-    }
-
-    .option-btn:hover {
-      background: rgba(230, 103, 103, 0.7);
-    }
-
-    .error-msg {
-      color: #ff7675;
-      font-size: 0.85rem;
-      margin-bottom: 12px;
-    }
-
-    /* Galeri Foto Hasil Kuis */
-    .gallery-container {
-      max-height: 400px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      padding-right: 8px;
-      margin-top: 20px;
-    }
-
-    .gallery-container::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .gallery-container::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 4px;
-    }
-
-    .gallery-container img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-  </style>
 </head>
 <body>
 
-  <!-- Video Background yang ada di repo -->
-  <video autoplay muted loop id="bg-video">
-    <source src="autumn_bg.mp4" type="video/mp4" />
-  </video>
-  <div class="overlay"></div>
+  <!-- ================= TAHAP 0: LOCKSCREEN PIN ================= -->
+  <section id="screen-lock" class="container pin-container fade-in">
+    <h2>Happy Birthday</h2>
+    <p style="margin-top: 6px; color: #4b5563; font-size: 14px;">
+      Masukkan 8 digit PIN untuk membuka kado.<br>
+      <i>Clue: Tanggal lahir kamu (17 September 2006) - 8 Angka</i>
+    </p>
 
-  <!-- 1. Layar Sandi -->
-  <section id="lock-section" class="card">
-    <h2>Secret Access 🔒</h2>
-    <p>Masukkan tanggal lahirmu (DDMMYY) untuk melanjutkan:</p>
-    <input type="password" id="pin-input" maxlength="6" placeholder="Contoh: 170906" />
-    <div id="error-alert" class="error-msg hidden">Sandi salah! Ingat tanggal lahirmu ya.</div>
-    <button onclick="checkPin()">Buka Kunci</button>
-  </section>
+    <div id="error-alert" class="error-alert hidden" style="margin-top: 14px;">
+      PIN Salah bosssssssssssssss
+    </div>
 
-  <!-- 2. Layar Kuis (7 Pertanyaan) -->
-  <section id="quiz-section" class="card hidden">
-    <span id="quiz-counter" style="font-size: 0.8rem; color: #ffbe76;">Pertanyaan 1 dari 7</span>
-    <h2 id="question-text" style="margin-top: 10px;">Pertanyaan</h2>
-    <div id="options-container" class="options-grid"></div>
-  </section>
+    <div id="indicators" class="indicators">⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ </div>
 
-  <!-- 3. Layar Hadiah / Galeri Foto -->
-  <section id="result-section" class="card hidden">
-    <h1>Selamat Ulang Tahun! 🎉</h1>
-    <p>Semua kuis berhasil terjawab. Ini sedikit kenangan dan aksara yang tersimpan:</p>
-    
-    <!-- Wadah Gambar Puisi -->
-    <div class="gallery-container" id="gallery">
-      <!-- Diisi otomatis lewat JavaScript -->
+    <div class="keypad-grid">
+      <button class="keypad-btn" onclick="pressDigit('1')">1</button>
+      <button class="keypad-btn" onclick="pressDigit('2')">2</button>
+      <button class="keypad-btn" onclick="pressDigit('3')">3</button>
+
+      <button class="keypad-btn" onclick="pressDigit('4')">4</button>
+      <button class="keypad-btn" onclick="pressDigit('5')">5</button>
+      <button class="keypad-btn" onclick="pressDigit('6')">6</button>
+
+      <button class="keypad-btn" onclick="pressDigit('7')">7</button>
+      <button class="keypad-btn" onclick="pressDigit('8')">8</button>
+      <button class="keypad-btn" onclick="pressDigit('9')">9</button>
+
+      <button class="keypad-btn" onclick="pressBackspace()">⌫</button>
+      <button class="keypad-btn" onclick="pressDigit('0')">0</button>
+      <button class="keypad-btn" onclick="pressSubmit()">✔</button>
     </div>
   </section>
 
-  <script>
-    // 1. Verifikasi Sandi
-    const CORRECT_PIN = "170906";
+  <!-- ================= TAHAP 1: SAMBUTAN ================= -->
+  <section id="screen-welcome" class="container hidden fade-in" style="max-width: 650px;">
+    <h1>Happy Level Up, Shashi Mulya Putri <br> Tretaaaaaan! 🎉</h1>
+    <hr />
+    <div class="info-card">Hai Shashi Mulya Putri,
 
-    function checkPin() {
-      const pin = document.getElementById("pin-input").value;
-      const error = document.getElementById("error-alert");
+This your day! 🎉 
+and ini revisial kemarin, juga sama-sama khusus untuk menyimpan setiap keping cerita, tawa, dan memori perjalanan kita. 
 
-      if (pin === CORRECT_PIN) {
-        document.getElementById("lock-section").classList.add("hidden");
-        document.getElementById("quiz-section").classList.remove("hidden");
-        loadQuestion();
-      } else {
-        error.classList.remove("hidden");
-      }
-    }
+Silakan nikmati setiap keping kenangan di dalamnya. Enjoy your special day!</div>
+    <button class="nav-btn" onclick="goToStep('poetry')">Lanjut ke Kumpulan Puisi & Memori ➡️</button>
+  </section>
 
-    // 2. Daftar 7 Pertanyaan
-    const questions = [
-      {
-        question: "1. Mobil impian yang sering dibahas atau jadi idaman?",
-        options: ["Ford Ranger Raptor", "Civic Turbo", "Pajero Sport", "Jeep Rubicon"],
-        correct: 0
-      },
-      {
-        question: "2. Momen paling random pas motong sayur kangkung?",
-        options: ["Kangkungnya malah dimakan mentah", "Cara motongnya pakai teori simetri", "Batangnya dipilah satu-satu sampai lama", "Dipotong sambil curhat"],
-        correct: 2 // sesuaikan nomor opsi yang benar (0, 1, 2, atau 3)
-      },
-      {
-        question: "3. Sebagai anak Teknik Sipil, tugas apa yang paling bikin begadang?",
-        options: ["Analisis Struktur & Mekanika Rekayasa", "Gambar Teknik / AutoCAD", "Praktikum Uji Beton & Tanah", "Semua tugas di atas bikin stres"],
-        correct: 3
-      },
-      {
-        question: "4. Kapan waktu paling rawan buat ngeluh soal laporan?",
-        options: ["Pagi hari sebelum kuliah", "Jam 2 pagi depan laptop", "Pas udah deadline H-1 jam", "Gak pernah ngeluh, tetep tabah"],
-        correct: 1
-      },
-      {
-        question: "5. Apa hal pertama yang dicari waktu selesai ujian semester?",
-        options: ["Tidur 12 jam nonstop", "Makan makanan enak", "Jalan-jalan cari angin", "Langsung rebahan tanpa mikir beban"],
-        correct: 0
-      },
-      {
-        question: "6. Kalau disuruh milih antara beton mutu tinggi vs Raptor?",
-        options: ["Tentu saja Raptor", "Tetep setia sama beton", "Raptor yang ngangkut beton", "Gak bisa milih, dua-duanya aja"],
-        correct: 0
-      },
-      {
-        question: "7. Terakhir, apa harapan terbesar di usia yang baru ini?",
-        options: ["Skripsi & kuliah lancar", "Rezeki mengalir dan selalu bahagia", "Bisa kebeli Raptor impian", "Semua jawaban benar dan terwujud!"],
-        correct: 3
-      }
-    ];
+  <!-- ================= TAHAP 2: GALERI PUISI (1-30) ================= -->
+  <section id="screen-poetry" class="container hidden fade-in">
+    <h2>📖 Galeri Kepingan Cerita</h2>
 
-    let currentQuestionIndex = 0;
+    <div class="top-nav">
+      <button class="nav-btn nav-btn-outline" style="width: auto;" onclick="goToStep('welcome')">⬅️ Kembali ke Surat Sambutan</button>
+      <button class="nav-btn" style="width: auto;" onclick="goToStep('closing')">Lanjut ke Penutupan ➡️</button>
+    </div>
 
-    function loadQuestion() {
-      const q = questions[currentQuestionIndex];
-      document.getElementById("quiz-counter").innerText = `Pertanyaan ${currentQuestionIndex + 1} dari ${questions.length}`;
-      document.getElementById("question-text").innerText = q.question;
+    <hr />
 
-      const optionsDiv = document.getElementById("options-container");
-      optionsDiv.innerHTML = "";
+    <div class="selector-panel">
+      <p style="font-weight: 600; color: #db2777; font-size: 14px;">🗂️ Pilih Kepingan Puisi (1 - 30):</p>
+      <div class="numbers-grid" id="numbers-grid"></div>
+    </div>
 
-      q.options.forEach((opt, idx) => {
-        const btn = document.createElement("button");
-        btn.className = "option-btn";
-        btn.innerText = opt;
-        btn.onclick = () => selectAnswer(idx);
-        optionsDiv.appendChild(btn);
-      });
-    }
+    <h3 id="poem-title" class="fade-in">Judul Puisi</h3>
+    
+    <div class="poetry-layout">
+      <div class="poetry-box fade-in" id="poem-content">Isi teks puisi...</div>
+      <div class="poetry-image-wrap fade-in">
+        <img id="poem-image" src="puisi1.png" alt="Gambar Puisi" />
+      </div>
+    </div>
+  </section>
 
-    function selectAnswer(selectedIdx) {
-      // Efek selebrasi confetti kecil tiap klik
-      confetti({ particleCount: 40, spread: 50, origin: { y: 0.7 } });
+  <!-- ================= TAHAP 3: PENUTUP ================= -->
+  <section id="screen-closing" class="container hidden fade-in" style="max-width: 650px;">
+    <h1>Bye Bye</h1>
+    <hr />
+    <div class="success-card">Terima kasih sudah melangkah sampai di kepingan terakhir. 
+Semoga lembar-lembar cerita ini selalu membawa senyum di harimu. ✨</div>
+    <button class="nav-btn" onclick="goToStep('poetry')">⬅️ Kembali Membaca Puisi</button>
+  </section>
 
-      currentQuestionIndex++;
-      if (currentQuestionIndex < questions.length) {
-        loadQuestion();
-      } else {
-        showResults();
-      }
-    }
-
-    // 3. Tampilkan Hasil dan Looping Foto Puisi
-    function showResults() {
-      document.getElementById("quiz-section").classList.add("hidden");
-      document.getElementById("result-section").classList.remove("hidden");
-
-      // Ledakan confetti besar
-      confetti({ particleCount: 150, spread: 100, origin: { y: 0.5 } });
-
-      const gallery = document.getElementById("gallery");
-
-      // Loop menampilkan puisi1.png sampai puisi21.png sesuai file di repository
-      for (let i = 1; i <= 30; i++) {
-        const img = document.createElement("img");
-        img.src = `puisi${i}.png`;
-        img.alt = `Aksara ${i}`;
-        img.loading = "lazy"; // Biar halaman tetap ringan dimuat
-        gallery.appendChild(img);
-      }
-    }
-  </script>
+  <!-- Hubungkan ke file script.js -->
+  <script src="script.js"></script>
 </body>
 </html>
