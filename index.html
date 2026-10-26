@@ -4,10 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Special Birthday Gift - Shashi Mulya Putri</title>
+  <!-- Menghubungkan ke file CSS -->
   <link rel="stylesheet" href="style.css" />
+  <!-- Script efek balon confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
+
+  <!-- Video Background -->
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="autumn_bg.mp4" type="video/mp4" />
+  </video>
+  <div class="bg-overlay"></div>
 
   <!-- ================= TAHAP 0: LOCKSCREEN PIN ================= -->
   <section id="screen-lock" class="container pin-container fade-in">
@@ -90,7 +98,7 @@ Semoga lembar-lembar cerita ini selalu membawa senyum di harimu. ✨</div>
     <button class="nav-btn" onclick="goToStep('poetry')">⬅️ Kembali Membaca Puisi</button>
   </section>
 
-  <!-- Hubungkan ke file script.js -->
+  <!-- Menghubungkan ke file JavaScript -->
   <script src="script.js"></script>
 </body>
 </html>
