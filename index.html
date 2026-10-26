@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Special Day - 17 September</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Library confetti instan via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+  <!-- Layar 1: Hero / Sambutan -->
+  <section id="hero" class="active">
+    <h1>Selamat Ulang Tahun ✨</h1>
+    <p>Ada sedikit kuis & memori sebelum hadiah dibuka.</p>
+    <button id="start-btn">Mulai Kuis</button>
+  </section>
+
+  <!-- Layar 2: Kuis Interaktif -->
+  <section id="quiz-section" class="hidden">
+    <h2 id="question-text">Pertanyaan akan muncul di sini</h2>
+    <div id="options-container" class="options"></div>
+  </section>
+
+  <!-- Layar 3: Galeri & Pesan Penutup -->
+  <section id="result-section" class="hidden">
+    <h2>Semua Jawaban Terbuka 🎉</h2>
+    <div class="gallery">
+      <img src="assets/foto1.jpg" alt="Memori 1" />
+      <img src="assets/foto2.jpg" alt="Memori 2" />
+    </div>
+    <p class="letter-text">Tuliskan pesan personal atau puisimu di sini.</p>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
