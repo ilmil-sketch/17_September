@@ -16,7 +16,7 @@ body {
   position: relative;
 }
 
-/* Video Background */
+/* Video Background Fullscreen */
 #bg-video {
   position: fixed;
   top: 0;
@@ -76,14 +76,24 @@ hr {
   animation: fadeIn 1s ease-in-out;
 }
 
-/* Container diperlebar agar foto bisa leluasa */
+/* Animasi Getar Kuis kalau Salah */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+.shake {
+  animation: shake 0.35s ease-in-out;
+}
+
 .container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* --- KEYPAD PIN --- */
+/* Keypad PIN */
 .pin-container {
   max-width: 360px;
   margin: 20px auto;
@@ -132,7 +142,7 @@ hr {
   font-size: 13px;
 }
 
-/* Pesan Kartu */
+/* Kartu Pesan Sambutan & Penutup */
 .info-card, .success-card {
   padding: 16px 18px;
   border-radius: 8px;
@@ -181,6 +191,43 @@ hr {
   background-color: rgba(219, 39, 119, 0.1);
 }
 
+/* Tampilan Kuis */
+.quiz-card {
+  background: rgba(255, 255, 255, 0.94);
+  padding: 24px 20px;
+  border-radius: 14px;
+  border: 1px solid #f3e8ff;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+  margin-top: 20px;
+}
+
+.options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option-btn {
+  background: rgba(219, 39, 119, 0.05);
+  border: 1px solid #fbcfe8;
+  color: #374151;
+  text-align: left;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.option-btn:hover {
+  background: #db2777;
+  color: #ffffff;
+  border-color: #db2777;
+  transform: translateX(4px);
+}
+
+/* Panel Pemilih Nomor (Ringkas) */
 .top-nav {
   display: flex;
   justify-content: space-between;
@@ -188,7 +235,6 @@ hr {
   margin-bottom: 8px;
 }
 
-/* --- PANEL PILIH NOMOR PUISI (DIPERKECIL & RINGKAS) --- */
 .selector-panel {
   background: rgba(255, 255, 255, 0.92);
   padding: 10px 14px;
@@ -198,7 +244,6 @@ hr {
   box-shadow: 0 2px 6px rgba(0,0,0,0.03);
 }
 
-/* Grid 10 kolom (hanya memakan 3 baris rapat untuk 30 nomor) */
 .numbers-grid {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
@@ -208,7 +253,7 @@ hr {
 
 @media (max-width: 600px) {
   .numbers-grid {
-    grid-template-columns: repeat(6, 1fr); /* 6 kolom di layar ponsel */
+    grid-template-columns: repeat(6, 1fr);
   }
 }
 
@@ -230,7 +275,7 @@ hr {
   border-color: #db2777;
 }
 
-/* --- TATA LETAK FOTO BESAR & KOTAK TEKS RAMPING --- */
+/* Tata Letak Puisi & Foto Besar */
 .poetry-layout {
   display: flex;
   flex-direction: column;
@@ -245,7 +290,6 @@ hr {
   }
 }
 
-/* Kotak teks puisi dibuat ramping tetap */
 .poetry-box {
   background-color: rgba(255, 255, 255, 0.95);
   padding: 16px;
@@ -257,11 +301,10 @@ hr {
   white-space: pre-line;
   box-shadow: 0 2px 5px rgba(0,0,0,0.04);
   width: 100%;
-  max-width: 250px; /* Lebar teks tetap ramping ~5cm */
+  max-width: 250px;
   flex-shrink: 0;
 }
 
-/* Wadah foto mengambil sisa seluruh ruang layar yang ada */
 .poetry-image-wrap {
   flex: 1;
   width: 100%;
@@ -271,7 +314,7 @@ hr {
 
 .poetry-image-wrap img {
   width: 100%;
-  max-width: 900px; /* Batas maksimum foto diperbesar */
+  max-width: 900px;
   height: auto;
   border-radius: 12px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.12);
