@@ -47,7 +47,7 @@ h1, h2, h3 {
 
 h1 { font-size: 1.8rem; margin-bottom: 12px; }
 h2 { font-size: 1.5rem; margin-bottom: 8px; }
-h3 { font-size: 1.2rem; margin-bottom: 12px; text-align: left; }
+h3 { font-size: 1.2rem; margin-bottom: 12px; text-align: center; }
 
 hr {
   border: none;
@@ -89,7 +89,7 @@ hr {
 
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -275,48 +275,40 @@ hr {
   border-color: #db2777;
 }
 
-/* Tata Letak Puisi & Foto Besar */
+/* ================= TATA LETAK FOTO & TEKS DI BAWAH ================= */
 .poetry-layout {
   display: flex;
-  flex-direction: column;
-  gap: 18px;
-  align-items: flex-start;
-}
-
-@media (min-width: 768px) {
-  .poetry-layout {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-}
-
-.poetry-box {
-  background-color: rgba(255, 255, 255, 0.95);
-  padding: 16px;
-  border-radius: 10px;
-  border: 1px solid #f3e8ff;
-  color: #374151;
-  font-size: 12.5px;
-  line-height: 1.6;
-  white-space: pre-line;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.04);
-  width: 100%;
-  max-width: 250px;
-  flex-shrink: 0;
-}
-
-.poetry-image-wrap {
-  flex: 1;
-  width: 100%;
-  display: flex;
   justify-content: center;
+  width: 100%;
 }
 
-.poetry-image-wrap img {
+.poetry-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 750px; /* Batas maksimal lebar foto agar proporsional */
   width: 100%;
-  max-width: 900px;
+}
+
+.poetry-wrapper img {
+  width: 100%;
   height: auto;
   border-radius: 12px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.12);
   display: block;
+}
+
+/* Kotak teks di bawah foto, lebar 100% sejajar dengan foto */
+.poetry-box {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 16px 18px;
+  border-radius: 10px;
+  border: 1px solid #f3e8ff;
+  color: #374151;
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre-line;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  width: 100%;
+  margin-top: 14px;
 }
