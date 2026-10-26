@@ -4,18 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Special Birthday Gift - Shashi Mulya Putri</title>
-  <!-- Menghubungkan ke file CSS -->
   <link rel="stylesheet" href="style.css" />
-  <!-- Script efek balon confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
-<body>
+<body style="position: relative; min-height: 100vh; margin: 0; padding: 24px 16px;">
 
-  <!-- Video Background -->
-  <video autoplay muted loop playsinline id="bg-video">
+  <!-- Video Background Paksa Fullscreen di Belakang -->
+  <video autoplay muted loop playsinline id="bg-video" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: -2; pointer-events: none;">
     <source src="autumn_bg.mp4" type="video/mp4" />
   </video>
-  <div class="bg-overlay"></div>
+  
+  <!-- Lapisan Transparan Pink Frosted Glass -->
+  <div class="bg-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(253, 242, 248, 0.82); backdrop-filter: blur(4px); z-index: -1; pointer-events: none;"></div>
 
   <!-- ================= TAHAP 0: LOCKSCREEN PIN ================= -->
   <section id="screen-lock" class="container pin-container fade-in">
@@ -98,7 +98,6 @@ Semoga lembar-lembar cerita ini selalu membawa senyum di harimu. ✨</div>
     <button class="nav-btn" onclick="goToStep('poetry')">⬅️ Kembali Membaca Puisi</button>
   </section>
 
-  <!-- Menghubungkan ke file JavaScript -->
   <script src="script.js"></script>
 </body>
 </html>
